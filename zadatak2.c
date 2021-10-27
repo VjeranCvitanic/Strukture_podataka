@@ -29,13 +29,16 @@ int main()
 {
 	Person Head = { .next = NULL,.name = {0},.surname = {0},.birthYear = 0 };
 	Position p = &Head;
-	char name, surname;
-	char* ime = &name;
-	char* prezime = &surname;
+	char name[MAX_SIZE] = { 0 }, surname[MAX_SIZE] = { 0 };
+	char* ime = NULL;
+	char* prezime = NULL;
+	ime = &name;
+	prezime = &surname;
+
 	int broj = 0;
 	int godRodenja = 0;
 	int flag = 1;
-	char b;
+	char b[MAX_SIZE];
 	char* pb = NULL;
 	pb = &b;
 	while (flag)
@@ -87,6 +90,7 @@ int main()
 			scanf("%s", pb);
 			Position u = FindBySurname(p, pb);
 			FindBefore(p, u);
+			break;
 		}
 		case 6:
 		{

@@ -465,7 +465,7 @@ Position FindBefore(Position first, Position target)	//pronadi prije
 	char a;
 	char b = "da";
 	scanf("%s", &a);
-	if (strcmp(a, b) == 0)*/
+	if (strcmp(a, b) == 0)*//*
 	DeleteAfter(temp);
 	return temp;
 }

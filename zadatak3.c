@@ -23,10 +23,11 @@ Position FindLast(Position p);											//pronalazi zadnjeg
 Position FindBySurname(Position p, char* surname);						//pronalazi po prezimenu
 Position FindBefore(Position p, Position target);						//pronalazi prije trazene osobe, po prezimenu
 int DeleteAfter(Position one);											//brise osobu nakon
-int AlphabeticalOrder(Position p, Position newPerson);					//sortira unos liste						 ne radi
+int AlphabeticalOrder(Position p, Position newPerson);					//sortira unos liste						 
 int Write(Position p, char* title);										//pise listu u datoteku
 int Read(Position p, char* title);										//cita listu iz datoteke
-void DeleteList(Position p);											//brise listu iz memorije					 ne radi
+void DeleteList(Position p);											//brise listu iz memorije					
+void transferP(Position p1, Position p2);								//kopira listu 
 
 int main()
 {
@@ -185,9 +186,14 @@ int main()
 
 		case 9:
 		{
+			int br2 = 0;
 			printf("Enter the name of the file:\n");
 			scanf("%s", title);
-			Write(p, title);
+			printf("Choose which list to write in file:\n1->user input\n2->sorted list\n");
+			scanf("%d", &br2);
+			if (br2 == 1)Write(p, title);
+			else if (br2 == 2)Write(p2, title);
+			else printf("Wrong input!\n");
 			break;
 		}
 
@@ -413,6 +419,7 @@ int Read(Position p, char* title)
 	Position newPerson = NULL;
 	FILE* fp;
 	fp = fopen(title, "r");
+	if (fp == NULL)return -1;
 	while (!feof(fp))
 	{
 		fscanf(fp, "%s %s %d\n", name, surname, &dob);
@@ -432,4 +439,12 @@ void DeleteList(Position temp)
 		DeleteAfter(temp);
 	}
 	//free(temp);
+}
+
+void transferP(Position p1, Position p2)
+{
+	Position temp = p2;
+	p2 = p1;
+	DeleteList(temp);
+
 }

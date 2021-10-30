@@ -120,10 +120,10 @@ int main()
 			scanf("%s", surname);
 			wantedSurname = FindBySurname(p, surname);
 			if (!wantedSurname)printf("There is no person with that last name in the list.\n");
-			else{
+			else {
 				before = FindBefore(p, wantedSurname);
 				DeleteAfter(before);
-				}
+			}
 			break;
 		}
 
@@ -135,7 +135,7 @@ int main()
 			printf("Enter the surname:\n");
 			scanf("%s", surname);
 			wantedSurname = FindBySurname(p, surname);
-			if(wantedSurname == NULL)printf("There is no person with that last name in the list.\n");
+			if (wantedSurname == NULL)printf("There is no person with that last name in the list.\n");
 			else insertAfter(wantedSurname, newPerson);
 			break;
 		}
@@ -366,7 +366,7 @@ int DeleteAfter(Position one)
 	return EXIT_SUCCESS;
 }
 
-int AlphabeticalOrder(Position p2, Position newPerson)						
+int AlphabeticalOrder(Position p2, Position newPerson)
 {
 	Position temp = p2;
 	if (temp->next == NULL)
@@ -432,13 +432,15 @@ int Read(Position p, char* title)
 	return EXIT_SUCCESS;
 }
 
-void DeleteList(Position temp)
+void DeleteList(Position p)
 {
-	while (temp->next)
+	while (p->next != NULL)
 	{
-		DeleteAfter(temp);
+		Position temp;
+		temp = p->next;
+		p->next = p->next->next;
+		free(temp);
 	}
-	//free(temp);
 }
 
 void transferP(Position p1, Position p2)

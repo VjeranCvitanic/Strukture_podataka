@@ -14,35 +14,41 @@ typedef struct _Person
 	Position next;
 }Person;
 
-int PrependList(Position p, char* name, char* surname, int birthYear);  //dodaje na kraj liste
-Position CreatePerson(char* name, char* surname, int birthYear);		//kreira novu osobu
-void PrintList(Position p);												//ispisuje listu
-int AppendList(Position p, char* name, char* surname, int birthYear);	//dodaje na pocetak liste
-void insertAfter(Position one, Position toBeInserted);					//dodaje nakon
-Position FindLast(Position p);											//pronalazi zadnjeg
-Position FindBySurname(Position p, char* surname);						//pronalazi po prezimenu
-Position FindBefore(Position p, Position target);						//pronalazi prije trazene osobe, po prezimenu
-int DeleteAfter(Position one);											//brise osobu nakon
-int AlphabeticalOrder(Position p, Position newPerson);					//sortira unos liste						 
-int Write(Position p, char* title);										//pise listu u datoteku
-int Read(Position p, char* title);										//cita listu iz datoteke
-void DeleteList(Position p);											//brise listu iz memorije					
-void transferP(Position p1, Position p2);								//kopira listu 
+int PrependList(Position p, Position p2, char* name, char* surname, int birthYear); //dodaje na kraj liste
+Position CreatePerson(char* name, char* surname, int birthYear);					//kreira novu osobu
+void PrintList(Position p);															//ispisuje listu
+int AppendList(Position p, Position p2, char* name, char* surname, int birthYear);	//dodaje na pocetak liste
+void insertAfter(Position one, Position toBeInserted);								//dodaje nakon
+Position FindLast(Position p);														//pronalazi zadnjeg
+Position FindBySurname(Position p, char* surname);									//pronalazi po prezimenu
+Position FindBefore(Position p, Position target);									//pronalazi prije trazene osobe, po prezimenu
+Position FindBefore2(Position p2, Position target);									//pronalazi prije trazene osobe, po prezimenu, u sortiranoj listi
+int DeleteAfter(Position one);														//brise osobu nakon
+int AlphabeticalOrder(Position p, Position newPerson);								//sortira unos liste						 
+int Write(Position p, char* title);													//pise listu u datoteku
+int Read(Position p, Position p2, char* title);										//cita listu iz datoteke
+void DeleteList(Position p);														//brise listu iz memorije					
+/*void transferP(Position p1, Position p2);	*/										//kopira listu 
 
 int main()
 {
 	Person Head = { .name = " ", .surname = " ", .birthYear = 0, .next = NULL };
 	Person Head2 = { .name = " ", .surname = " ", .birthYear = 0, .next = NULL };
 	Person Head3 = { .name = " ", .surname = " ", .birthYear = 0, .next = NULL };
+	Person Head4 = { .name = " ", .surname = " ", .birthYear = 0, .next = NULL };
 	Position p = NULL;
 	Position p2 = NULL;
 	Position p3 = NULL;
+	Position p4 = NULL;
 	Position newPerson;
 	Position wantedSurname;
+	Position wantedSurname2;
 	Position before;
+	Position before2;
 	p = &Head;
 	p2 = &Head2;
 	p3 = &Head3;
+	p4 = &Head4;
 	char name[MAX_LINE] = { 0 };
 	char surname[MAX_LINE] = { 0 };
 	int birthyear;
@@ -55,7 +61,7 @@ int main()
 	while (flag == 0)
 	{
 		flag2 = 0;
-		printf("Menu:\nInput 1 for adding a person at the start\nInput 2 for adding a person at the end of the list\nInput 3 for printing the list\nInput 4 for finding a person by his/her surname\nInput 5 for deleting a person\nInput 6 for inserting afer someone\nInput 7 for inserting before someone\nInput 8 for creating a list in alphabetical order\nInput 9 for writing the list in a file\nInput 10 for reading the list from a file\nInput 11 for deleting a list\nInput 12 for exiting\n");
+		printf("Menu:\nInput 1 for adding a person at the start\nInput 2 for adding a person at the end of the list\nInput 3 for printing the list\nInput 4 for finding a person by his/her surname\nInput 5 for deleting a person\nInput 6 for inserting afer someone\nInput 7 for inserting before someone\nInput 8 for writing the list in a file\nInput 9 for reading the list from a file\nInput 10 for deleting a list\nInput 11 for exiting\n");
 		scanf("%d", &br);
 		switch (br)
 		{
@@ -63,7 +69,7 @@ int main()
 		{
 			printf("Enter name, surname and birthyear:\n");
 			scanf("%s %s %d", name, surname, &birthyear);
-			PrependList(p, name, surname, birthyear);
+			PrependList(p, p2, name, surname, birthyear);
 			break;
 		}
 
@@ -71,13 +77,13 @@ int main()
 		{
 			printf("Enter name, surname and birthyear:\n");
 			scanf("%s %s %d", name, surname, &birthyear);
-			AppendList(p, name, surname, birthyear);
+			AppendList(p, p2, name, surname, birthyear);
 			break;
 		}
 
 		case 3:
 		{
-			printf("Pick p1(main list) or p2(alphabetical order) or p3(read from file)\n");
+			printf("Pick p1(main list) or p2(alphabetical order) or p3(read from file) or p4(alphabetically sorted from file)\n");
 			scanf("%s", simbol);
 			if (strcmp(simbol, "p1") == 0)
 			{
@@ -100,6 +106,13 @@ int main()
 				printf("\n");
 			}
 
+			else if(strcmp(simbol,"p4") == 0)
+			{
+				printf("\n");
+				PrintList(p4);
+				printf("\n");
+			}
+
 			else printf("Wrong input!\n");
 			break;
 		}
@@ -119,10 +132,13 @@ int main()
 			printf("Enter the surname:\n");
 			scanf("%s", surname);
 			wantedSurname = FindBySurname(p, surname);
+			wantedSurname2 = FindBySurname(p2, surname);
 			if (!wantedSurname)printf("There is no person with that last name in the list.\n");
 			else {
 				before = FindBefore(p, wantedSurname);
+				before2 = FindBefore2(p2, wantedSurname2);
 				DeleteAfter(before);
+				DeleteAfter(before2);
 			}
 			break;
 		}
@@ -136,7 +152,11 @@ int main()
 			scanf("%s", surname);
 			wantedSurname = FindBySurname(p, surname);
 			if (wantedSurname == NULL)printf("There is no person with that last name in the list.\n");
-			else insertAfter(wantedSurname, newPerson);
+			else
+			{
+				insertAfter(wantedSurname, newPerson);
+				AlphabeticalOrder(p2, newPerson);
+			}
 			break;
 		}
 
@@ -156,35 +176,12 @@ int main()
 			{
 				before = FindBefore(p, wantedSurname);
 				insertAfter(before, newPerson);
+				AlphabeticalOrder(p2, newPerson);
 			}
 			break;
 		}
 
 		case 8:
-		{
-			printf("For stopping input type 'exit'\n");
-			while (flag2 == 0)
-			{
-				printf("Enter name, surname and birthyear:\n");
-				scanf("%s", name);
-
-				if (strcmp(name, "exit") == 0 || strcmp(name, "Exit") == 0 || strcmp(name, "EXIT") == 0)
-				{
-					flag2 = 1;
-					continue;
-				}
-
-				scanf("%s %d", surname, &birthyear);
-
-				newPerson = CreatePerson(name, surname, birthyear);
-				newPerson->next = NULL;
-				AlphabeticalOrder(p2, newPerson);
-
-			}
-			break;
-		}
-
-		case 9:
 		{
 			int br2 = 0;
 			printf("Enter the name of the file:\n");
@@ -197,17 +194,17 @@ int main()
 			break;
 		}
 
-		case 10:
+		case 9:
 		{
 			printf("Enter the name of the file:\n");
 			scanf("%s", title);
-			Read(p3, title);
+			Read(p3, p4, title);
 			break;
 		}
 
-		case 11:
+		case 10:
 		{
-			printf("Pick p1(main list) or p2(alphabetical order) or p3(read from file)\n");
+			printf("Pick p1(main list) or p2(alphabetical order) or p3(read from file) or p4(alphabetically sorted from file)\n");
 			scanf("%s", simbol);
 			if (strcmp(simbol, "p1") == 0)
 			{
@@ -230,11 +227,18 @@ int main()
 				printf("\n");
 			}
 
+			else if (strcmp(simbol, "p4") == 0)
+			{
+				printf("\n");
+				DeleteList(p4);
+				printf("\n");
+			}
+
 			else printf("Wrong input!\n");
 			break;
 		}
 
-		case 12:
+		case 11:
 		{
 			flag = 1;
 			break;
@@ -269,7 +273,7 @@ Position CreatePerson(char* name, char* surname, int birthYear)
 	return newPerson;
 }
 
-int PrependList(Position p, char* name, char* surname, int birthYear)
+int PrependList(Position p, Position p2, char* name, char* surname, int birthYear)
 {
 	Position NewPerson = CreatePerson(name, surname, birthYear);
 	if (!NewPerson)
@@ -278,6 +282,7 @@ int PrependList(Position p, char* name, char* surname, int birthYear)
 		return EXIT_FAILURE;
 	}
 	insertAfter(p, NewPerson);
+	AlphabeticalOrder(p2, NewPerson);
 	return EXIT_SUCCESS;
 }
 
@@ -291,7 +296,7 @@ void PrintList(Position p)
 	}
 }
 
-int AppendList(Position p, char* name, char* surname, int birthYear)
+int AppendList(Position p, Position p2, char* name, char* surname, int birthYear)
 {
 	Position newPerson = NULL;
 	Position temp = p;
@@ -308,6 +313,7 @@ int AppendList(Position p, char* name, char* surname, int birthYear)
 	}
 	Position last = FindLast(temp);
 	insertAfter(last, newPerson);
+	AlphabeticalOrder(p2, newPerson);
 	return EXIT_SUCCESS;
 }
 
@@ -357,6 +363,15 @@ Position FindBefore(Position p, Position target)
 	return temp;
 }
 
+Position FindBefore2(Position p2, Position target)
+{
+	Position temp = p2;
+	while ((temp->next) != target)
+	{
+		temp = temp->next;
+	}
+	return temp;
+}
 int DeleteAfter(Position one)
 {
 	if (!one)return -1;
@@ -368,18 +383,19 @@ int DeleteAfter(Position one)
 
 int AlphabeticalOrder(Position p2, Position newPerson)
 {
+	Position newPerson2 = CreatePerson(newPerson->name, newPerson->surname, newPerson->birthYear);
 	Position temp = p2;
 	if (temp->next == NULL)
 	{
-		insertAfter(p2, newPerson);
+		insertAfter(p2, newPerson2);
 	}
 	else
 	{
 		while (temp->next != NULL)
 		{
-			if (strcmp(temp->next->surname, newPerson->surname) > 0)
+			if (strcmp(temp->next->surname, newPerson2->surname) > 0)
 			{
-				insertAfter(temp, newPerson);
+				insertAfter(temp, newPerson2);
 				break;
 			}
 			else
@@ -389,7 +405,7 @@ int AlphabeticalOrder(Position p2, Position newPerson)
 		}
 		if (temp->next == NULL)
 		{
-			insertAfter(temp, newPerson);
+			insertAfter(temp, newPerson2);
 		}
 	}
 	return 0;
@@ -409,7 +425,7 @@ int Write(Position p, char* title)
 	return EXIT_SUCCESS;
 }
 
-int Read(Position p, char* title)
+int Read(Position p, Position p2, char* title)
 {
 	char name[MAX_LINE];
 	char surname[MAX_LINE];
@@ -426,6 +442,7 @@ int Read(Position p, char* title)
 		newPerson = CreatePerson(name, surname, dob);
 		last = FindLast(p);
 		insertAfter(last, newPerson);
+		AlphabeticalOrder(p2, newPerson);
 	}
 	PrintList(p);
 	fclose(fp);
@@ -434,19 +451,16 @@ int Read(Position p, char* title)
 
 void DeleteList(Position p)
 {
-	while (p->next != NULL)
-	{
-		Position temp;
-		temp = p->next;
-		p->next = p->next->next;
-		free(temp);
-	}
+	Position temp;
+	temp = p->next;
+	p->next = p->next->next;
+	free(temp);
 }
 
-void transferP(Position p1, Position p2)
+/*void transferP(Position p1, Position p2)
 {
 	Position temp = p2;
 	p2 = p1;
 	DeleteList(temp);
 
-}
+}*/

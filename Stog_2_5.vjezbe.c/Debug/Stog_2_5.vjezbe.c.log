@@ -1,0 +1,9 @@
+﻿  declarations.c
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(17,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(42,17): warning C4028: formal parameter 1 different from declaration
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(43,1): warning C4029: declared formal parameter list different from definition
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(44,24): error C2231: '.next': left operand points to 'struct', use '->'
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(187,35): warning C4047: 'function': 'char' differs in levels of indirection from 'stackElement *'
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(187,30): warning C4024: 'PerformOperation': different types for formal and actual parameter 1
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(187,46): warning C4047: 'function': 'Position' differs in levels of indirection from 'char'
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\Stog_2_5.vjezbe.c\declarations.c(187,37): warning C4024: 'PerformOperation': different types for formal and actual parameter 2

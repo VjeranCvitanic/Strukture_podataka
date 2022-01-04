@@ -1,0 +1,6 @@
+﻿  Source.c
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,56): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,46): warning C4024: 'ReadFromFirstFile': different types for formal and actual parameter 3
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,64): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,58): warning C4024: 'ReadFromFirstFile': different types for formal and actual parameter 4
+  zadatak_10_b.c.vcxproj -> C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Debug\zadatak_10_b.c.exe

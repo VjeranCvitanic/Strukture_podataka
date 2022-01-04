@@ -1,0 +1,3 @@
+Krakow 766000
+Lodz 750000
+Varsava 1700000

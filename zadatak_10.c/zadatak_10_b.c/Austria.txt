@@ -1,0 +1,5 @@
+Linz 180000
+Graz 225000
+Beè 1550000
+Klagenfurt 90000
+Salzburg 140000

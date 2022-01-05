@@ -35,7 +35,7 @@ CityPosition CreateNewCityElement(char name[], int population);
 
 int ReadFromFirstFile(CountryPosition head, char fileName[MAX_LINE], char* countrieNamesDestination, char* fileNamesDestination);
 
-int ReadFromNewFiles(CountryPosition head, char fileName[MAX_LINE]);
+int ReadFromNewFiles(CountryPosition head, char countryName[MAX_LINE], char fileName[MAX_LINE]);
 
 int InsertCountry(CountryPosition head, CountryPosition new);
 
@@ -49,5 +49,6 @@ int PrintCities(CityPosition head);
 
 int FindBigger(CountryPosition current, int number);
 
+CountryPosition Find(CountryPosition head, char countryName[MAX_LINE]);
 #endif 
 

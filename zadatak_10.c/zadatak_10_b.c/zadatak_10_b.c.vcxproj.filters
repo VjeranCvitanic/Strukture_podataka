@@ -28,16 +28,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\10zadatak_c\Countries.txt">
+    <Text Include="Austria.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="..\10zadatak_c\Austria.txt">
+    <Text Include="Croatia.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="..\10zadatak_c\Croatia.txt">
+    <Text Include="Poland.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="..\10zadatak_c\Poland.txt">
+    <Text Include="Countries.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

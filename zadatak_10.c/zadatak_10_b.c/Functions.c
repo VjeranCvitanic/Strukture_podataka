@@ -15,7 +15,7 @@ CountryPosition CreateNewCountryElement(char name[])
 		return NULL;
 	}
 
-	new->cityHead = NULL;
+	new->cityHead = CreateNewCityElement(" ", 0);
 	new->left = NULL;
 	new->right = NULL;
 	strcpy(new->name, name);
@@ -51,18 +51,6 @@ int ReadFromFirstFile(CountryPosition head, char fileName[MAX_LINE], char* count
 
 	if (!fp)return EXIT_FAILURE;
 
-	fgets(buffer, MAX_LINE, fp);
-
-	sscanf(buffer, "%s %s", countryName, fileNameNew);
-
-	strncat(countrieNamesDestination, countryName);
-	strncat(countrieNamesDestination, " ");
-
-	strncat(fileNamesDestination, fileNameNew);
-	strncat(fileNamesDestination, " ");
-
-	head = CreateNewCountryElement(countryName);
-
 	while (!feof(fp))
 	{
 		fgets(buffer, MAX_LINE, fp);
@@ -75,11 +63,6 @@ int ReadFromFirstFile(CountryPosition head, char fileName[MAX_LINE], char* count
 		strncat(fileNamesDestination, fileNameNew);
 		strncat(fileNamesDestination, " ");
 
-		CountryPosition new = CreateNewCountryElement(countryName);
-		if (new)
-		{
-			InsertCountry(head, new);
-		}
 	}
 
 	fclose(fp);
@@ -89,7 +72,7 @@ int ReadFromFirstFile(CountryPosition head, char fileName[MAX_LINE], char* count
 
 int InsertCountry(CountryPosition head, CountryPosition new)
 {
-	if (head)
+	if (head && new)
 	{
 		if (strcmp(head->name, new->name) < 0)
 		{
@@ -117,23 +100,26 @@ CountryPosition Insert(CountryPosition head, CountryPosition new)
 	}
 }
 
-int ReadFromNewFiles(CountryPosition head, char fileName[MAX_LINE])
+int ReadFromNewFiles(CountryPosition head, char countryName[MAX_LINE], char fileName[MAX_LINE])
 {
 	FILE* fp = fopen(fileName, "r");
-	char* buffer = (char*)malloc(sizeof(char) * MAX_LINE);
+	char* buffer = (char*)malloc(MAX_LINE * sizeof(char));
+
 
 	int cityPopulation = 0;
-	char cityName[MAX_LINE];
+	char cityName[MAX_LINE] = { 0 };
+
+	CountryPosition found = Find(head, countryName);
 
 	while (!feof(fp))
 	{
 		fgets(buffer, MAX_LINE, fp);
 
-		if (sscanf(buffer, "%s %d", cityName, cityPopulation) != 2)break;
+		sscanf(buffer, "%s %d", cityName, &cityPopulation);
 
 		CityPosition new = CreateNewCityElement(cityName, cityPopulation);
 
-		InsertCity(head->cityHead, new);
+		InsertCity(found->cityHead, new);
 	}
 
 	fclose(fp);
@@ -145,10 +131,22 @@ int InsertCity(CityPosition first, CityPosition new)
 {
 	CityPosition temp = first->next;
 	CityPosition prev = first;
+
+	if (!temp) 
+	{
+		first->next = new;
+		return EXIT_SUCCESS;
+	}
 	while (temp != NULL && new->population < temp->population)
 	{
 		prev = temp;
 		temp = temp->next;
+	}
+
+	if (!temp)
+	{
+		prev->next = new;
+		return EXIT_SUCCESS;
 	}
 
 	if (new->population == temp->population)
@@ -169,8 +167,9 @@ int Print(CountryPosition head)
 {
 	if (head)
 	{
-		printf("%s", head->name);
+		printf("%s ", head->name);
 		PrintCities(head->cityHead);
+		printf("\n");
 		Print(head->left);
 		Print(head->right);
 	}
@@ -194,7 +193,7 @@ int PrintCities(CityPosition head)
 
 int FindBigger(CountryPosition current, int number)
 {
-	CityPosition temp = current->cityHead;
+	CityPosition temp = current->cityHead->next;
 
 	while (temp != NULL && temp->population > number)
 	{
@@ -203,4 +202,20 @@ int FindBigger(CountryPosition current, int number)
 	}
 
 	return EXIT_SUCCESS;
+}
+
+
+CountryPosition Find(CountryPosition head, char countryName[MAX_LINE])
+{
+	CountryPosition temp = NULL;
+
+	if (!head)return NULL;
+	
+	if (strcmp(head->name, countryName) < 0)temp = Find(head->right, countryName);
+
+	else if (strcmp(head->name, countryName) > 0)temp = Find(head->left, countryName);
+
+	else temp = head;
+
+	return temp;
 }

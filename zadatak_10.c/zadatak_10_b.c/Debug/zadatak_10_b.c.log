@@ -1,6 +1,5 @@
-﻿  Source.c
-C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,56): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
-C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,46): warning C4024: 'ReadFromFirstFile': different types for formal and actual parameter 3
-C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,64): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
-C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Source.c(13,58): warning C4024: 'ReadFromFirstFile': different types for formal and actual parameter 4
-  zadatak_10_b.c.vcxproj -> C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10_b.c\Debug\zadatak_10_b.c.exe
+﻿  Functions.c
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10.c\zadatak_10_b.c\Functions.c(21,8): warning C4013: 'strcpy' undefined; assuming extern returning int
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10.c\zadatak_10_b.c\Functions.c(60,10): warning C4013: 'strncat' undefined; assuming extern returning int
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10.c\zadatak_10_b.c\Functions.c(77,13): warning C4013: 'strcmp' undefined; assuming extern returning int
+  zadatak_10_b.c.vcxproj -> C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\zadatak_10.c\zadatak_10_b.c\Debug\zadatak_10_b.c.exe

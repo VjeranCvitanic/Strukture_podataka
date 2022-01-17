@@ -2,6 +2,7 @@
 #include "Functions.h"
 
 
+//Raèuna hash kljuè
 
 int HashFunction(char countryName[MAX_LINE])
 {
@@ -17,7 +18,8 @@ int HashFunction(char countryName[MAX_LINE])
 	}
 
 	return sum % table_size;
-}
+}                                         //Raèuna hash kljuè
+
 
 CountryPosition CreateNewCountryElement(char name[MAX_LINE])
 {
@@ -54,6 +56,8 @@ CityPosition CreateNewCityElement(char name[MAX_LINE], int population)
 	return q;
 }
 
+//Poziva funkciju Insert za odgovarajuci head element u nizu
+
 int InsertCountryElement(CountryPosition first[table_size], char name[MAX_LINE])
 {
 	int hashNumber = HashFunction(name);
@@ -61,6 +65,8 @@ int InsertCountryElement(CountryPosition first[table_size], char name[MAX_LINE])
 	Insert(first[hashNumber], new);
 	return EXIT_SUCCESS;
 }
+
+//Inserta zemlju
 
 int Insert(CountryPosition current, CountryPosition new)
 {
@@ -80,12 +86,16 @@ int Insert(CountryPosition current, CountryPosition new)
 	return EXIT_SUCCESS;
 }
 
+//Poziva funkciju InsertCity
+
 int InsertCityElement(CountryPosition head, char name[MAX_LINE], int population)
 {
 	CityPosition q = CreateNewCityElement(name, population);
 	head->next->cityHead = InsertCity(head->next->cityHead, q);
 	return EXIT_SUCCESS;
 }
+
+//Rekurzivno dodaje grad 
 
 CityPosition InsertCity(CityPosition current, CityPosition new)
 {
@@ -94,12 +104,12 @@ CityPosition InsertCity(CityPosition current, CityPosition new)
 		return new;
 	}
 
-	else if (current->population > new->population)
+	else if (current->population < new->population)
 	{
 		current->right = InsertCity(current->right, new);
 	}
 
-	else if (current->population < new->population)
+	else if (current->population > new->population)
 	{
 		current->left = InsertCity(current->left, new);
 	}
@@ -121,6 +131,8 @@ CityPosition InsertCity(CityPosition current, CityPosition new)
 
 	return current;
 }
+
+//Èita iz prvog filea
 
 int ReadFromFirstFile(char fileName[MAX_LINE], CountryPosition first[table_size])
 {
@@ -154,6 +166,8 @@ int ReadFromFirstFile(char fileName[MAX_LINE], CountryPosition first[table_size]
 
 	return EXIT_SUCCESS;
 }
+
+//Èita drugi file
 
 int ReadFromNewFile(CountryPosition first[table_size], char countryName[MAX_LINE], char newFileName[MAX_LINE])
 {
@@ -201,6 +215,8 @@ CountryPosition FindCountry(CountryPosition first[table_size], char name[MAX_LIN
 	return find;
 }
 
+//Printa sve drzave i poziva PrintCities
+
 int Print(CountryPosition first[table_size])
 {
 	for (int i = 0; i < table_size; i++)
@@ -216,6 +232,8 @@ int Print(CountryPosition first[table_size])
 
 	return EXIT_SUCCESS;
 }
+
+//Rekurzivno ispisuje gradove (u preorderu) 
 
 int PrintCities(CityPosition head)
 {

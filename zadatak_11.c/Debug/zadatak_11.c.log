@@ -2,5 +2,8 @@
 C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\zadatak_11.c\Functions.c(11,14): warning C4013: 'toupper' undefined; assuming extern returning int
 C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\zadatak_11.c\Functions.c(32,8): warning C4013: 'strcpy' undefined; assuming extern returning int
 C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\zadatak_11.c\Functions.c(72,39): warning C4013: 'strcmp' undefined; assuming extern returning int
+  Source.c
+C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\zadatak_11.c\Source.c(10,9): warning C4013: 'strcpy' undefined; assuming extern returning int
+  Generating Code...
 C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\zadatak_11.c\Functions.c(184): warning C4715: 'ReadFromNewFile': not all control paths return a value
   zadatak_11.c.vcxproj -> C:\Users\vjera\OneDrive\Radna površina\Strukture_podataka\zadatak_11.c\Debug\zadatak_11.c.exe

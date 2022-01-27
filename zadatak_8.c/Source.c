@@ -273,8 +273,8 @@ int PrintPreOrder(Position current)
 	if (current)
 	{
 		printf("%d ", current->number);
-		PrintInOrder(current->left);
-		PrintInOrder(current->right);
+		PrintPreOrder(current->left);
+		PrintPreOrder(current->right);
 
 		return 0;
 	}
@@ -286,8 +286,8 @@ int PrintPostOrder(Position current)
 {
 	if (current)
 	{
-		PrintInOrder(current->left);
-		PrintInOrder(current->right);
+		PrintPostOrder(current->left);
+		PrintPostOrder(current->right);
 		printf("%d ", current->number);
 
 		return 0;

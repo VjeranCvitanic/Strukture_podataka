@@ -1,0 +1,8 @@
+2021-08-01
+kruh 2 5.99
+mlijeko 6 9.99
+sampon_za_kosu 1 18.99
+suncokretovo_ulje 1 13.99
+jaja_pakiranje 1 10.99
+vino 1 39.99
+banana 5 1.99

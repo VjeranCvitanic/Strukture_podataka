@@ -1,0 +1,9 @@
+2021-08-08
+kruh 1 5.99
+mlijeko 8 9.99
+sampon_za_kosu 1 18.99
+suncokretovo_ulje 1 13.99
+ketchup 1 12.99
+psenicno_brasno 1 14.99
+vino 2 39.99
+banana 2 1.99

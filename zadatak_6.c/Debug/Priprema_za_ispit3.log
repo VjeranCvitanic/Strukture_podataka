@@ -1,0 +1,5 @@
+﻿  Source.c
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\Priprema_za_ispit3\Source.c(16,50): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[1024]'
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\Priprema_za_ispit3\Source.c(16,40): warning C4024: 'ReadFromFile': different types for formal and actual parameter 3
+C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\Priprema_za_ispit3\Source.c(18,22): warning C4047: '=': 'char *' differs in levels of indirection from 'char (*)[1024]'
+  Priprema_za_ispit3.vcxproj -> C:\Users\vjera\OneDrive\Radna površina\Strukture podataka\Priprema_za_ispit3\Debug\Priprema_za_ispit3.exe

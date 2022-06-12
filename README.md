@@ -1,2 +1,2 @@
 # Strukture_podataka
-Laboratorijske vjezbe
+Laboratorijske vjezbe iz kolegija Strukture podataka
